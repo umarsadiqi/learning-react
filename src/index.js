@@ -2,14 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 class App extends React.Component {
-    constructor(props) {
-        // must call super() in constructor
-        super(props);
+    state = { lat: null, errorMessage: '' }
 
-        // this is only time, we direct assign object to this.state
-        // elseWhere, we use setState()
-        this.state = { lat: null, errorMessage: '' };
-
+    componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
             (position) => this.setState({ lat: position.coords.latitude }),
             (err) => this.setState({ errorMessage: err.message })
