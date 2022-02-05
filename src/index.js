@@ -8,19 +8,26 @@ class App extends React.Component {
 
         // this is only time, we direct assign object to this.state
         // elseWhere, we use setState()
-        this.state = { lat: null };
+        this.state = { lat: null, errorMessage: '' };
 
         window.navigator.geolocation.getCurrentPosition(
             (position) => this.setState({ lat: position.coords.latitude }),
-            (err) => console.log(err)
+            (err) => this.setState({ errorMessage: err.message })
         );
     }
 
     // we have to define render() method in every class-based component
     render() {
-        return (
-            <div>Latitude: {this.state.lat}</div>
-        )
+        // in case: location is fetched successfully
+        if (this.state.lat && !this.state.errorMessage) {
+            return (<div>Latitude: {this.state.lat}</div>)
+        }
+        // in case: location cannot be fetched
+        if (!this.state.lat && this.state.errorMessage) {
+            return (<div>Error: {this.state.errorMessage}</div>)
+        }
+        // while fetching location
+        return (<div>loading...</div>)
     }
 
 }
