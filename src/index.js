@@ -14,18 +14,24 @@ class App extends React.Component {
         );
     }
 
-    // we have to define render() method in every class-based component
-    render() {
-        // in case: location is fetched successfully
+    // helper function to render conditions
+    renderContent() {
         if (this.state.lat && !this.state.errorMessage) {
             return <SeasonDisplay lat={this.state.lat} />;
         }
-        // in case: location cannot be fetched
         if (!this.state.lat && this.state.errorMessage) {
             return <div>Error: {this.state.errorMessage}</div>;
         }
-        // while fetching location
-        return <Spinner />;
+        return <Spinner message="Please accept location request" />;
+    }
+
+    // we have to define render() method in every class-based component
+    render() {
+        return (
+            <div>
+                {this.renderContent()}
+            </div>
+        );
     }
 
 }
