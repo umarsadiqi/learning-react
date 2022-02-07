@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import SeasonDisplay from './SeasonDisplay';
-import Spinner from "./Spinner";
 
 class App extends React.Component {
     state = { lat: null, errorMessage: '' };
@@ -18,14 +17,14 @@ class App extends React.Component {
     render() {
         // in case: location is fetched successfully
         if (this.state.lat && !this.state.errorMessage) {
-            return <SeasonDisplay lat={this.state.lat} />;
+            return <SeasonDisplay lat={this.state.lat} />
         }
         // in case: location cannot be fetched
         if (!this.state.lat && this.state.errorMessage) {
-            return <div>Error: {this.state.errorMessage}</div>;
+            return (<div>Error: {this.state.errorMessage}</div>)
         }
         // while fetching location
-        return <Spinner />;
+        return (<div>loading...</div>)
     }
 
 }
