@@ -1,19 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-class App extends React.Component {
-    // we have to define render() method in every class-based component
-    render() {
-        window.navigator.geolocation.getCurrentPosition(
-            (position) => console.log(position),
-            (err) => console.log(err)
-        );
-
-        return (
-            <div>Latitude: </div>
-        )
-    }
-
-}
+const App = () => {
+    return (
+        <div>App</div>
+    );
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
